@@ -72,6 +72,8 @@ def on_click(x, y, hiirenupp, vajutus):
             clicks.append((ala, time.time()))  # Salvestame klikitud ala ja aja
             print(f"Klikkisid: {ala}") # Prindime konsooli, kuhu klikiti
             kontrolli_järjekorda() # Käivitame järjekorra kontrollimise funktsiooni
+            
+        time.sleep(0.01)
 
 # Hiireklikkide kuulaja
 with Listener(on_click=on_click) as listener:
