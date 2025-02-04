@@ -1,0 +1,22 @@
+<puutesätted>
+    <ajapiirang>5</ajapiirang>
+    <järjekord>
+        <ala>Vasak-Ülemine</ala>
+        <ala>Parem-Ülemine</ala>
+        <ala>Parem-Alumine</ala>
+        <ala>Vasak-Alumine</ala>
+    </järjekord>
+</puutesätted>
+
+<!--
+ ajapiirang on sekundites ja peab olema täisarv!!
+ alasi võiks teoreetiliselt saada lisada lõpmata palju (järjekord on oluline
+ ning alustame alati esimesest, lõpetame viimasega)
+ hetkel on olemas järgmised alad:
+ Vasak-Ülemine
+ Parem-Ülemine
+ Parem-Alumine
+ Vasak-Alumine
+
+ Ekraan on jaotatud 4ks võrdseks "kastiks"
+-->

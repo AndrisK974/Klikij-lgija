@@ -1,17 +1,36 @@
 from pynput.mouse import Listener
 import screeninfo
 import time
+import xml.etree.ElementTree as ET
+
+def loe_xml(xml_fail="puutesätted.xml"):
+    tree = ET.parse(xml_fail)
+    root = tree.getroot()
+    # Seame ajapiirangu, mis aja jooksul tuleb klikid teha (praegu 5 sekundit)
+    ajapiirang = int(root.find("ajapiirang").text)
+    
+    # Saame XML failist järjekorra, kuhu ja kuidas tuleb klikkida
+    õige_järjekord = [ala.text for ala in root.find("järjekord").findall("ala")]
+
+    return ajapiirang, õige_järjekord
+
+# Loeme XML-ist need parameetrid
+ajapiirang, õige_järjekord = loe_xml()
 
 # Tuvastame ekraani suuruse
-ekraan = screeninfo.get_monitors()[0]
-ekraan_pikkus = ekraan.width
-ekraan_laius = ekraan.height
+ekraanid = screeninfo.get_monitors()[0]
+ekraan_pikkus = ekraanid.width
+ekraan_laius = ekraanid.height
+
+
+
+alad = {}
+
+# Defineerime 4 ala nimetuse järgi
 
 # Jagame ekraani neljaks kastiks
 MIDDLE_X = ekraan_pikkus // 2
 MIDDLE_Y = ekraan_laius // 2
-
-# Defineerime 4 ala nimetuse järgi
 alad = {
     "Vasak-Ülemine": (0, MIDDLE_X, 0, MIDDLE_Y),           # Vasak ülemine
     "Parem-Ülemine": (MIDDLE_X, ekraan_pikkus, 0, MIDDLE_Y),  # Parem ülemine
@@ -19,14 +38,11 @@ alad = {
     "Vasak-Alumine": (0, MIDDLE_X, MIDDLE_Y, ekraan_laius)  # Vasak alumine
 }
 
-# Õige järjekord. Selles järjestuses klikkides teeb programm tegevuse
-õige_järjekord = ["Vasak-Ülemine", "Parem-Ülemine", "Parem-Alumine", "Vasak-Alumine"]
 
 # Salvestame klikid massiivi
 clicks = []
 
-# Seame ajapiirangu, mis aja jooksul tuleb klikid teha (praegu 5 sekundit)
-ajapiirang = 5
+
 
 # Taimer on 0
 taimer = None
