@@ -54,6 +54,7 @@ def kontrolli_järjekorda():
         klikitud_alad = [click[0] for click in clicks]
         if klikitud_alad == õige_järjekord:
             print("Õnnestus!")
+            
             clicks = []  # Tühjendame massiivi
 
 # Kontrollime, millises piirkonnas hiireklik toimus
